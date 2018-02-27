@@ -1,0 +1,13 @@
+<div class="image-viewer row align-items-center">
+  <div class="col-1 align-self-center">
+    <div (click)="onButtonClick( 'left' )" class="image-viewer__button--left"></div>
+  </div>
+  <div class="image-viewer__wrapper col-10">
+    <div class="image-viewer__container" *ngFor="let item of images; let i = index" [ngClass]="{'image-viewer__container--active': currentImageIndex === i}">
+      <img class="image-viewer__container__image" [src]="item" />
+    </div>
+  </div>
+  <div class="col-1 align-self-center">
+    <div (click)="onButtonClick( 'right' )" class="image-viewer__button--right"></div>
+  </div>
+</div>
