@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 
 const IMAGES: Array<String> = ['https://www.w3schools.com/bootstrap/ny.jpg',
 'http://www.kinyu-z.net/data/wallpapers/35/823945.jpg',
@@ -11,13 +11,14 @@ const IMAGES: Array<String> = ['https://www.w3schools.com/bootstrap/ny.jpg',
 'https://images.pexels.com/photos/280452/pexels-photo-280452.jpeg',
 'https://images.pexels.com/photos/270887/pexels-photo-270887.jpeg',
 'http://www.kinyu-z.net/data/wallpapers/35/823942.jpg',
-'https://images.pexels.com/photos/104835/daisy-flower-blossom-bloom-104835.jpeg']
+'http://www.kinyu-z.net/data/wallpapers/1/703968.jpg' ];
+
 @Component({
   selector: 'app-image-viewer',
   templateUrl: './image-viewer.component.html',
   styleUrls: ['./image-viewer.component.scss']
 })
-export class ImageViewerComponent implements OnInit {
+export class ImageViewerComponent implements OnInit, OnDestroy {
 
   @Input() public images: Array<String> = IMAGES;
   public currentImageIndex: number = 0;
@@ -44,6 +45,10 @@ export class ImageViewerComponent implements OnInit {
     clearInterval( this.slideShowInterval );
     this.currentImageIndex = index;
     this.initializeSlideShow();
+  }
+
+  public ngOnDestroy(): void {
+    clearInterval( this.slideShowInterval );
   }
 
   private initializeSlideShow(): void {

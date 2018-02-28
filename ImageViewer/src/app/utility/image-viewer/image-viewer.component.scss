@@ -60,6 +60,7 @@ $color-grey-200: #525050;
     padding: 1px;
     margin: 2px;
     border: 2px solid $color-grey-200;
+    box-shadow: 0 0 2px 0;
     border-radius: 30px;
     &__current {
     background: transparent;
@@ -100,6 +101,11 @@ $color-grey-200: #525050;
 
 @media ( max-width: 767px) {
   .image-viewer {
+    &__container {
+        &__image {
+          max-height: 155px;
+        }
+    }
     &__button {
       &--left,
       &--right {
