@@ -1,4 +1,6 @@
 $color-grey-100: #e2e2e2;
+$color-grey-200: #525050;
+
 .image-viewer {
   text-align: center;
   &__button {
@@ -51,6 +53,22 @@ $color-grey-100: #e2e2e2;
       animation: scale-display .5s;
       animation-fill-mode: forwards;
       display: block;
+    }
+  }
+  &__count {
+    display: inline-block;
+    padding: 1px;
+    margin: 2px;
+    border: 2px solid $color-grey-200;
+    border-radius: 30px;
+    &__current {
+    background: transparent;
+    width: 5px;
+    height: 5px;
+    border-radius: 50px;
+    }
+    &--active {
+        background: $color-grey-200;
     }
   }
 }

@@ -6,4 +6,9 @@
     </div>
     <div (click)="onButtonClick( 'right' )" class="image-viewer__button--right"></div>
   </div>
+  <div class="col align-items-center">
+    <div class="image-viewer__count" *ngFor="let item of images; let i = index">
+      <div [ngClass]="{'image-viewer__count--active': currentImageIndex === i}" class="image-viewer__count__current"></div>
+    </div>
+  </div>
 </div>
