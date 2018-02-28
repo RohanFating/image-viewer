@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 const IMAGES: Array<String> = ['https://www.w3schools.com/bootstrap/ny.jpg',
 'http://www.kinyu-z.net/data/wallpapers/35/823945.jpg',
@@ -17,18 +17,38 @@ const IMAGES: Array<String> = ['https://www.w3schools.com/bootstrap/ny.jpg',
   templateUrl: './image-viewer.component.html',
   styleUrls: ['./image-viewer.component.scss']
 })
-export class ImageViewerComponent {
+export class ImageViewerComponent implements OnInit {
 
   @Input() public images: Array<String> = IMAGES;
   public currentImageIndex: number = 0;
+  private slideShowInterval: any;
   constructor() { }
 
-  public onButtonClick(side) {
+  public ngOnInit(): void {
+   this.initializeSlideShow();
+  }
+
+  public onButtonClick( side: string, fromSlideShow?: boolean ) {
+    if ( !fromSlideShow ) {
+       clearInterval( this.slideShowInterval );
+    }
     if (side === 'left') {
       this.currentImageIndex = this.currentImageIndex > 0 ? this.currentImageIndex - 1 : 0;
     } else {
       this.currentImageIndex = this.currentImageIndex < this.images.length - 1 ? this.currentImageIndex + 1 : this.images.length - 1;
     }
+    this.initializeSlideShow();
   }
 
+  public onPositionClick( index: number ): void {
+    clearInterval( this.slideShowInterval );
+    this.currentImageIndex = index;
+    this.initializeSlideShow();
+  }
+
+  private initializeSlideShow(): void {
+    this.slideShowInterval = setInterval( () => {
+      this.currentImageIndex === this.images.length - 1 ? this.currentImageIndex = 0 : this.onButtonClick( 'right' );
+    }, 4000 );
+  }
 }

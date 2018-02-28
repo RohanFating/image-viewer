@@ -8,7 +8,7 @@
   </div>
   <div class="col align-items-center">
     <div class="image-viewer__count" *ngFor="let item of images; let i = index">
-      <div [ngClass]="{'image-viewer__count--active': currentImageIndex === i}" class="image-viewer__count__current"></div>
+      <div [ngClass]="{'image-viewer__count--active': currentImageIndex === i}" (click)="onPositionClick(i)" class="image-viewer__count__current"></div>
     </div>
   </div>
 </div>
